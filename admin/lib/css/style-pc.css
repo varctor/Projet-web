@@ -1,0 +1,187 @@
+/*************** GENERALITES  ...........*/
+.txtGras {
+	font-weight:bold;
+}
+.txtBlue {
+    color:blue;
+}
+.up {
+    vertical-align:top;
+}
+.centrer {
+    text-align:center;
+}
+
+/****************** Layout ***************/
+
+body{
+    background-image: url("background1.jpg");
+    //background-color:rgb(176,238,211);
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;    
+}
+
+#page {
+	margin:0 auto;
+	width:85%; 
+	max-width:900px;/*m taille que header */
+	min-width:800px;
+}
+
+header {
+	margin:0 auto;
+	max-width:900px;
+}
+
+#colGauche {
+	float:left;
+	width:18%;
+	margin-top:2%;
+}
+
+#contenu {
+	float:left;
+	margin-top:5%;
+	margin-left:2%;
+	width:80%;
+        min-height: 400px;
+}
+
+#main {
+	padding-left:1%;padding-right:1%;
+	width:100%;/* 80% des 75% */
+	display:inline-block;	
+}
+
+footer {
+	clear:both;
+	color:#888;
+	width:80%;
+	margin:0 auto;
+	text-align:right;
+        font-size:10px;
+}
+
+header img {
+	width:100%;
+}
+
+#connexion{
+    text-align: center;
+}
+
+input{
+    width:150px;
+}
+
+fieldset{
+    width: 115%;
+}
+
+.condition{
+    color:rgb(13,136,172);
+    margin-right:20px;
+}
+
+.bouton{
+    text-decoration: none;
+}
+
+#compte{
+    margin-left:0%;
+    margin-right:0%;
+}
+
+#info{
+    margin-right:5%;
+    text-align:right;
+}
+
+table{
+     border-collapse: collapse;
+}
+
+td
+{
+    width:50%;
+}
+
+#tableau2 td
+{
+    white-space:nowrap;
+}
+
+#tableau2 tr{
+    border: 1px solid black;
+}
+
+.condi{
+    font-size:8px;
+}
+
+/****************** Menu ***************/
+
+#menu{
+    padding:0;
+ margin:0;
+    
+}
+#menu li {
+list-style-image:none;
+list-style-type:none;
+margin-right:2px;
+float:right;
+}
+
+#menu a
+{
+color:green;
+text-decoration:none;
+font-style:italic;
+border-bottom:3px solid silver;
+border-right:3px solid silver;
+border-left:2px solid black;
+border-top:2px solid black;
+background-color:#6495ED;
+text-align: center;
+display:block;
+} 
+a.vertical 
+{
+ font-weight: bold;
+ text-align: center;
+ padding: 5px;
+ display: block; 
+}
+#menu a:visited
+{
+color:blue;
+}
+
+.petitbouton{
+    width: 100px;
+}
+.grosbouton{
+    width: 150px;
+}
+
+/****************** Menu 2 ***************/
+
+#menu2{
+    list-style-type:none;
+    //font-weight:bold;
+    font-family: Impact, "Arial Black", sans-serif;
+    font-size: 20px;
+}
+
+#menu2 a{
+    text-decoration:none;
+}
+
+#menu2 a:visited{
+    color:blue;
+}
+
+#menu2 a:hover{
+    text-decoration: underline;
+    background-color: grey;
+}

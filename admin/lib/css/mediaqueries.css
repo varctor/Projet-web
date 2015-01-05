@@ -1,0 +1,8 @@
+/* PC de bureau */
+@import url("style_pc.css") only screen and (min-width:800px);
+
+/* tablettes */
+@import url("tablette.css") only screen and (min-width:351px) and (max-width:799px);
+
+/*mobiles */
+@import url("mobile.css") only screen and (max-width:350px);
