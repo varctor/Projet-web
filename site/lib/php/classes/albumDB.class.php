@@ -1,6 +1,6 @@
 <?php
 
-class discussionDB extends discussion {
+class albumDB extends album {
 
     private $_db;
 
@@ -9,21 +9,20 @@ class discussionDB extends discussion {
     public function __construct($db) {
         $this->_db = $db;
     }
-        public function affichage ()
-    {
+    
+    public function cherche (){
         $i=0;
         $_utilisateurArray= array();
         try{
-            $query ="select * from discussion";
+            $query ="select * from album";
             $resultset = $this->_db->prepare($query);
             $resultset->execute();}
         catch(PDOException $e) {
             print $e->getMessage();
         }
             while($data = $resultset->fetch()){
-                $_utilisateurArray[$i]["message"] = utf8_encode($data["message"]);
-                $_utilisateurArray[$i]["id_user_envoi"] = utf8_encode($data["id_user_envoi"]);
-                $_utilisateurArray[$i]["id_user_reception"] = utf8_encode($data["id_user_reception"]);
+                $_utilisateurArray[$i]["nom_album"] = utf8_encode($data["nom_album"]);
+                $_utilisateurArray[$i]["nom_user"] = utf8_encode($data["nom_user"]);
                 $i++;
             }
      return $_utilisateurArray;

@@ -5,14 +5,15 @@
                     <ul id="menu2">
                     <li> <a href="index.php?page=donnee">Vos données</a></li>
                     <li> <a href="index.php?page=album">Vos albums</a></li>
-                    <li> <a href="">Sous-menu1</a></li>
-                    <li> <a href="">Sous-menu2</a></li>
-                    <li> <a href="">Sous-menu3</a></li>
+                    <li> <a href="">Paramètres de confidentialité</a></li>
+                    <li> <a href="">Historique personnel</a></li>
+                    <li> <a href="">Aide</a></li>
                     </ul>
                 </td>
                 <td>
         <div>
         <?php
+          $_SESSION['choix'] = $_SESSION['id_user'];
           echo "<p>Votre compte : <br/><br/> ";
 	  echo "NOM : ".$_SESSION['nom']."<br/>";
 	  echo "PRENOM : ".$_SESSION['prenom']."<br/>";
