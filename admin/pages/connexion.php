@@ -3,9 +3,20 @@
 $erreur="";
 $isLogin=0;
 if (isset($_POST["connection"])) {
-    if ($_POST['pseudo'] == "admin" && $_POST["pass"] == "linux") {
-        $_SESSION['pseudo'] = "admin";
-    }else if(empty($_POST['pseudo'])|| empty($_POST["pass"]))
+    
+    //$mg = new Login($db);
+    //$retour=$mg->isAdmin($_POST['login'],$_POST['password']);
+    //if($retour==1) {
+    //    $_SESSION['admin']=1;
+    //    $message="Authentifié!";
+    //    header('Location: http://localhost/Projet_web/admin/index.php');
+    //} 
+    //else {
+    //   $message="Données incorrectes";
+    //}
+    
+    
+    if(empty($_POST['pseudo'])|| empty($_POST["pass"]))
     {
     $erreur= "Vous devez remplir tout les champs";
     }
@@ -17,57 +28,67 @@ if (isset($_POST["connection"])) {
         
         if($user->get_id_user()==-1){
             $erreur = "Erreur de connexion";
+            echo $user->get_id_user();
+            echo $user->get_pseudo();
+            echo $user->get_password();
          
         }
         else{
-            $_SESSION['pseudo']=$user->get_pseudo();
+            
+            if ($_POST['pseudo'] == "Admin" && $_POST["pass"] == "linux") {
+        $user = new utilisateurDB($db);
+        $user->setALL("", "", "", $_POST['pseudo'], $_POST['pass']);
+        $user->connection();
+        
+        $_SESSION['pseudo']=$user->get_pseudo();
             $_SESSION['nom']=$user->get_nom();
             $_SESSION['prenom']=$user->get_prenom();
             $_SESSION['password']=$user->get_password();
             $_SESSION['email']=$user->get_email();
             $_SESSION['id_user']=$user->get_id_user();
-            $isLogin=1;
-
+        
+        $_SESSION['pseudo'] = "admin";
+        $_SESSION['admin'] = 1;?>
+        <p>Connection réussi, rédirection en cours ... </p>
+<META HTTP-EQUIV="Refresh" CONTENT="1; URL=index.php?page=accueil"><?php
                         }
+         else{
+             echo "vous n'êtes pas admin";
+         }
+                        
         }
 }
-
-if (isset($_POST["inscription"])) {
-    ?>
-<p>Chargement en cours ... </p>
-    <META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php?page=inscription">
-    <?php
 }
+
 
 if($isLogin==1){
     ?>
 <p>Connection réussi, rédirection en cours ... </p>
-<META HTTP-EQUIV="Refresh" CONTENT="2; URL=index.php?page=accueil">
+<META HTTP-EQUIV="Refresh" CONTENT="1; URL=index.php?page=accueil">
 <?php
     
 }
 
 else{
 ?> 
-
+<section id="login_form">
+ <fieldset id="fieldset_login">
 <form id="connexion" action="#" method="post">
-    <fieldset>
             <label for="pseudo">Pseudo</label><br/>
             <input type="text" name="pseudo" id="pseudo" onchange="sessionStorage.pseudo=this.value"/><br/>
             <label for="pass">Mot de passe</label><br/>
             <input type="password" name="pass" id="pass" onchange="sessionStorage.pass=this.value"/><br/><br/>
             <input type="submit" name="connection" value="connection" /><br/>
-            <input type="submit" name="inscription" value="inscription" />
             <div style="color:red"><b>
                 <?php if(!empty($erreur)){
                 echo $erreur;
             }
             ?>
             </b></div>
-    </fieldset>
     
 </form>  
-
+</fieldset>
+    </section>
 <script>
 // Détection du support
 if(typeof sessionStorage!='undefined') {
@@ -82,7 +103,6 @@ if(typeof sessionStorage!='undefined') {
 	alert("sessionStorage n'est pas supporté");
 }
 </script>
-
 <?php
    }
 ?>

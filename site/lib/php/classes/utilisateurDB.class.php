@@ -87,4 +87,31 @@ class utilisateurDB extends utilisateur{
         return $_utilisateurArray;
     }
     
+    
+        public function addUtilisateur(array $data) {
+        //var_dump($data);
+        $query="select add_inscription (:nom,:email,:prenom,:password,:pseudo) as retour" ;
+        try {
+            $id=null;
+            $statement = $this->_db->prepare($query);		
+            $statement->bindValue(1, $data['nom'], PDO::PARAM_STR);
+            $statement->bindValue(2, $data['email'], PDO::PARAM_STR);
+            $statement->bindValue(3, $data['prenom'], PDO::PARAM_STR);
+            $statement->bindValue(4, $data['password'], PDO::PARAM_INT);
+            $statement->bindValue(5, $data['pseudo'], PDO::PARAM_STR);
+            
+            //ajouter le paramètre type_animal
+           
+           
+            $statement->execute();
+            $retour = $statement->fetchColumn(0);
+            return $retour;
+        } 
+        catch(PDOException $e) {
+            print "Echec de l'insertion : ".$e;
+            $retour=0;
+            return $retour;
+        }   
+    }
+    
 }

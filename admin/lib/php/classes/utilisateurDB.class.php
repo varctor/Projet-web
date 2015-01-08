@@ -30,7 +30,27 @@ class utilisateurDB extends utilisateur{
         }
     }
     
-        public function cherche (){
+    
+    public function gestion (){
+        $i=0;
+        $_utilisateurArray= array();
+        try{
+           $query ="select id_user,pseudo from utilisateur";
+           $resultset = $this->_db->prepare($query);
+           $resultset->execute();
+        }
+        catch(PDOException $e) {
+            print $e->getMessage();
+        }
+        while($data = $resultset->fetch()) {
+           $_utilisateurArray[$i]["id_user"] = utf8_encode($data["id_user"]);
+           $_utilisateurArray[$i]["pseudo"] = utf8_encode($data["pseudo"]);
+           $i++;
+        }
+        return $_utilisateurArray;
+    }
+    
+            public function cherche (){
         
         try{
             $query ="select * from utilisateur where pseudo='".$this->_pseudo."'";
@@ -50,41 +70,12 @@ class utilisateurDB extends utilisateur{
         }
     }
     
-    public function getnewcontact (){
-        $i=0;
-        $_utilisateurArray= array();
-        try{
-           $query ="select id_user,pseudo from utilisateur";
-           $resultset = $this->_db->prepare($query);
-           $resultset->execute();
-        }
-        catch(PDOException $e) {
-            print $e->getMessage();
-        }
-        while($data = $resultset->fetch()) {
-           $_utilisateurArray[$i]["id_user"] = utf8_encode($data["id_user"]);
-           $_utilisateurArray[$i]["pseudo"] = utf8_encode($data["pseudo"]);
-           $i++;
-        }
-        return $_utilisateurArray;
-    }
-    
-        public function getamis (){
-        $i=0;
-        $_utilisateurArray= array();
-        try{
-           $query ="select pseudo from utilisateur where id_user=blablabla";
-           $resultset = $this->_db->prepare($query);
-           $resultset->execute();
-        }
-        catch(PDOException $e) {
-            print $e->getMessage();
-        }
-        while($data = $resultset->fetch()) {
-           $_utilisateurArray[$i]["pseudo"] = utf8_encode($data["pseudo"]);
-           $i++;
-        }
-        return $_utilisateurArray;
+    public function suppression (){
+        
+        $query="delete from utilisateur where pseudo='".$_POST['choix']."'";
+        $resultset = $this->_db->prepare($query);
+        $resultset->execute();
+        
     }
     
 }

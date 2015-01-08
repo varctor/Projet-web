@@ -1,4 +1,4 @@
-    <fieldset>
+    <fieldset id="field">
         <table id="compte">
             <tr>
                 <td>

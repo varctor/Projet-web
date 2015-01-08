@@ -10,8 +10,17 @@ $mg4 = new albumDB($db);
 
 
 <form action="<?php print $_SERVER['PHP_SELF']; ?>" method="post">
+        <fieldset>
 <table>
         <tr>
+             <td>
+                    <ul id="menu2">
+                    <li> <a href="index.php?page=donnee">Ses données</a></li>
+                    <li> <a href="index.php?page=album">Ses albums</a></li>
+                    <li> <a href="index.php?page=discussion">Discussion</a></li>
+                    </ul>
+                </td>
+            
             <td>
             </td>
             <td>
@@ -35,6 +44,7 @@ $mg4 = new albumDB($db);
             </td>
         </tr>
     </table>
+                </fieldset>
 </form>
 
 <?php
@@ -60,7 +70,7 @@ if (isset($_POST['choix1'])) {
          ?>
         <tr>
             <td>
-                <img src="../images/<?php print $liste_deroulante2[$i]["photo"];?>" alt="<?php print $liste_deroulante2[$i]["nom_photo"];?>" />
+                <img src="../images/<?php print $liste_deroulante2[$i]["photo"];?>" alt="<?php print $liste_deroulante2[$i]["nom"];?>" />
             </td>
         </tr>
         <?php

@@ -4,8 +4,13 @@ $mg = new utilisateurDB($db);
 $liste_deroulante = $mg->getnewcontact();
 $erreur="";
 
+$mg2 = new contactDB($db);
+$liste_deroulante1 = $mg2->cherche();
+$erreur="";
+
 //nombre d'élt du tableau de resultset
 $nbr = count($liste_deroulante);
+$nbr1 = count($liste_deroulante1);
 
 if (isset($_POST['choix'])) {
     $resume = $mg->connection($_POST['choix']); // servira à afficher le profil de la personne choisit
@@ -15,7 +20,7 @@ if (isset($_POST['choix'])) {
             <tr>
                 <td>
                     <ul id="menu2">
-                    <li> <a href="index.php?page=donnee">Ses données</a></li>
+                        <li> <a href=<!--"index.php?page=donnee"-->>Ses données</a></li>
                     <li> <a href="index.php?page=album">Ses albums</a></li>
                     <li> <a href="index.php?page=discussion">Discussion</a></li>
                     </ul>
@@ -68,13 +73,14 @@ else{
                     <?php
                     for ($i = 0; $i < $nbr; $i++) {
                         if(!($_SESSION['pseudo'] == $liste_deroulante[$i]["pseudo"]))
-                    {
+                    {for ($j = 0; $j < $nbr1; $j++) {
+                            if(($_SESSION['id_user'] == $liste_deroulante1[$j]["id_user1"])&&($liste_deroulante[$i]["id_user"] == $liste_deroulante1[$j]["id_user2"])){
                         ?>
                     <option value="<?php print $liste_deroulante[$i]["pseudo"]; ?>">
                         <?php print $liste_deroulante[$i]["pseudo"]; ?>
                     </option>
                         <?php
-                    }
+                    }}}
                     }
                     ?>
                 </select>
@@ -84,7 +90,8 @@ else{
         <?php
                     for ($i = 0; $i < $nbr; $i++) {
                         if(!($_SESSION['pseudo'] == $liste_deroulante[$i]["pseudo"]))
-                    {
+                    {for ($j = 0; $j < $nbr1; $j++) {
+                            if(($_SESSION['id_user'] == $liste_deroulante1[$j]["id_user1"])&&($liste_deroulante[$i]["id_user"] == $liste_deroulante1[$j]["id_user2"])){
                         ?>
         <tr>
             
@@ -102,7 +109,7 @@ else{
         </tr>
         <?php
                     }
-                    }
+                    }}}
                     ?>
     </table>
 </form>

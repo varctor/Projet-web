@@ -6,27 +6,38 @@ $erreur="";
 $nbr = count($liste_deroulante);
 ?>
 <form action="<?php print $_SERVER['PHP_SELF']; ?>" method="post">
-<table id="tableau2">
+<table id="tableau3">
         <?php
                     for ($i = 0; $i < $nbr; $i++) {
-                        if(!($_SESSION['pseudo'] == $liste_deroulante[$i]["id_user_envoi"]))
+                        if(($_SESSION['id_user'] == $liste_deroulante[$i]["id_user_envoi"])&&($_SESSION['choix'] == $liste_deroulante[$i]["id_user_reception"]))
                     {
                         ?>
-        <tr>
+        <tr id="moi">
             
-            <td style="width:200px;">
-                   <!--affichage de la discussion-->
+            <td> 
                 </td>
             <td colspan="2">
-                
-           <br/><?php
-                     print $liste_deroulante[$i]["id_user_envoi"];
+                <?php
+                     print $liste_deroulante[$i]["message"];
                      ?>
-                
             </td>
             
         </tr>
         <?php
+                    }
+                    else if(($_SESSION['id_user'] == $liste_deroulante[$i]["id_user_reception"])&&($_SESSION['choix'] == $liste_deroulante[$i]["id_user_envoi"]))
+                    {?>
+                               <tr id="toi">
+      
+            <td colspan="2">
+                <?php
+                     print $liste_deroulante[$i]["message"];
+                     ?>
+            </td>
+                        <td> 
+                </td>
+            
+        </tr><?php
                     }
                     }
                     ?>
@@ -64,7 +75,7 @@ if(isset($_POST['Enregistrer'])){
 
 ?>
 
-    <form method="POST" action="valideedito.php">
+    <form method="POST">
         <p><textarea rows="5" id="message" name="message" cols="100" ></textarea><br/><br/></p>
         <input type=submit name="Enregistrer" value="Enregistrer"> 
     </form>

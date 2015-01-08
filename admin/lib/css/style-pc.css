@@ -73,7 +73,7 @@ input{
     width:150px;
 }
 
-fieldset{
+fieldset#field{
     width: 115%;
 }
 
@@ -100,10 +100,7 @@ table{
      border-collapse: collapse;
 }
 
-td
-{
-    width:50%;
-}
+
 
 #tableau2 td
 {
@@ -114,9 +111,63 @@ td
     border: 1px solid black;
 }
 
+#tableau3{
+    border: 1px solid black;
+    width: 80%;
+    margin-left: 10%;
+}
+
+#tableau5{
+    width: 100%;
+    border: 1px solid black;
+}
+
 .condi{
     font-size:8px;
 }
+
+#moi{
+    color:red;
+}
+
+#toi{
+    color:green;
+}
+
+
+td.taille1{
+    width : 400px;
+}
+
+
+/***************************************Accueil admin *******************************/
+
+#login_form  {    
+    top:200px;
+    left:450px;
+    width:40%;
+    min-width: 350px;
+    position:fixed;
+    background-color:#2D63A1;
+    color:white;
+    padding:10px;
+    border:1px solid #AAA;
+    z-index:200;
+    -moz-border-radius: 10px;
+    -moz-box-shadow: 0 0 10px #aaa;
+    -webkit-border-radius: 10px;
+    -webkit-box-shadow: 0 0 10px #aaa;
+}
+#overlay:target {
+    display:block;
+}
+
+fieldset#fieldset_login {
+    border:2px solid white;				
+    border-radius:8px;	
+    padding:50px;
+}
+
 
 /****************** Menu ***************/
 

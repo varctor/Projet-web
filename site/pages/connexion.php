@@ -3,9 +3,7 @@
 $erreur="";
 $isLogin=0;
 if (isset($_POST["connection"])) {
-    if ($_POST['pseudo'] == "admin" && $_POST["pass"] == "linux") {
-        $_SESSION['pseudo'] = "admin";
-    }else if(empty($_POST['pseudo'])|| empty($_POST["pass"]))
+if(empty($_POST['pseudo'])|| empty($_POST["pass"]))
     {
     $erreur= "Vous devez remplir tout les champs";
     }
@@ -33,6 +31,7 @@ if (isset($_POST["connection"])) {
 }
 
 if (isset($_POST["inscription"])) {
+    $_SESSION['inscription'] = "inscription"
     ?>
 <p>Chargement en cours ... </p>
     <META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php?page=inscription">
@@ -51,7 +50,7 @@ else{
 ?> 
 
 <form id="connexion" action="#" method="post">
-    <fieldset>
+    <fieldset id="field">
             <label for="pseudo">Pseudo</label><br/>
             <input type="text" name="pseudo" id="pseudo" onchange="sessionStorage.pseudo=this.value"/><br/>
             <label for="pass">Mot de passe</label><br/>

@@ -3,8 +3,15 @@
 $mg = new utilisateurDB($db);
 $liste_deroulante = $mg->getnewcontact();
 
+$mg2 = new contactDB($db);
+$liste_deroulante1 = $mg2->cherche();
+$erreur="";
+
 //nombre d'élt du tableau de resultset
 $nbr = count($liste_deroulante);
+$nbr1 = count($liste_deroulante1);
+
+$trouve=0;
 
 if (isset($_GET['choix'])) {
     $resume = $mg->connection($_GET['choix']); // servira à afficher le profil de la personne choisit
@@ -31,13 +38,16 @@ else{
                     for ($i = 0; $i < $nbr; $i++) {
                         
                     if(!($_SESSION['pseudo'] == $liste_deroulante[$i]["pseudo"]))
-                    {
+                    {$trouve=0;
+                        for ($j = 0; $j < $nbr1; $j++) {
+                    if(!(($_SESSION['id_user'] == $liste_deroulante1[$j]["id_user1"])&&($liste_deroulante[$i]["id_user"] == $liste_deroulante1[$j]["id_user2"]))&&!(($_SESSION['id_user'] == $liste_deroulante1[$j]["id_user2"])&&($liste_deroulante[$i]["id_user"] == $liste_deroulante1[$j]["id_user1"]))&&(!($trouve==1))){
                         ?>
                     <option value="<?php print $liste_deroulante[$i]["id_user"]; ?>">
                         <?php print $liste_deroulante[$i]["pseudo"]; ?>
                     </option>
                         <?php
-                    }
+                        $trouve=1;
+                    }}}
                     }
                     ?>
                 </select>
@@ -47,7 +57,9 @@ else{
         <?php
                     for ($i = 0; $i < $nbr; $i++) {
                         if(!($_SESSION['pseudo'] == $liste_deroulante[$i]["pseudo"]))
-                    {
+                    {$trouve=0;
+                            for ($j = 0; $j < $nbr1; $j++) {
+                             if(!(($_SESSION['id_user'] == $liste_deroulante1[$j]["id_user1"])&&($liste_deroulante[$i]["id_user"] == $liste_deroulante1[$j]["id_user2"]))&&!(($_SESSION['id_user'] == $liste_deroulante1[$j]["id_user2"])&&($liste_deroulante[$i]["id_user"] == $liste_deroulante1[$j]["id_user1"]))&&(!($trouve==1))){
                         ?>
         <tr>
             
@@ -57,6 +69,7 @@ else{
             <td colspan="2">
                 
            <br/><?php
+           $trouve=1;
                      print $liste_deroulante[$i]["pseudo"];
                      ?>
                 
@@ -64,7 +77,7 @@ else{
             
         </tr>
         <?php
-                    }
+                    }}}
                     }
                     ?>
     </table>
